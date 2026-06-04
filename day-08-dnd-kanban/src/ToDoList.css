@@ -1,0 +1,42 @@
+
+.todolist {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.todolist--add-new {
+    display: flex;
+    gap: 16px;
+}
+
+.todolist--kanbans {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.kanban {
+    text-align: center;
+}
+
+.kanban > * {
+    margin-bottom: 16px;
+}
+
+.kanban p {
+    cursor: pointer;
+}
+
+.kanban p:hover {
+    font-weight: 600;
+}
+
+.todolist--trash {
+    height: 24px;
+    width: 24px;
+    color: black;
+}
+
