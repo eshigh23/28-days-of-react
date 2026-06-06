@@ -1,0 +1,60 @@
+.app {
+  background-color: rgb(235, 235, 235);
+  padding-inline: 5rem;
+  min-height: 100vh;
+  padding-top: 5vh;
+}
+
+.movie-search {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  padding: 1rem;
+  background-color: white;
+  /* width: 100%; */
+  gap: .25rem;
+}
+
+.movie-search-input {
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid rgb(235, 235, 235);
+  padding-inline: 1rem;
+}
+
+.search-button {
+  background-color: rgb(102, 102, 248);
+  color: white;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  /* width: 100%; */
+}
+
+
+.movie-results {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: white;
+  width: 160px;
+  border: 1px solid grey;
+  padding: 1em;
+  height: 400px;
+
+  overflow: hidden;
+
+}
+
+.movie-card p {
+   
+}
