@@ -9,7 +9,7 @@ type Movie = {
   overview: string;
 }
 
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w154";
+const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 function App() {
 
@@ -56,12 +56,18 @@ function App() {
       <h3>Movie Search</h3>
 
       <div className="movie-search">
-          <input
-            className="movie-search-input"
-            name="movieSearch"
-            value={movieSearch}
-            onChange={(e) => setMovieSearch(e.target.value)}
-          />
+        <label htmlFor="movie-search-input">
+          Search for a movie
+        </label>
+
+        <input
+          className="movie-search-input"
+          name="movieSearch"
+          placeholder="Enter movie name"
+          required
+          value={movieSearch}
+          onChange={(e) => setMovieSearch(e.target.value)}
+        />
 
         <button className="search-button" onClick={searchMovie}> Search</button>
       </div>
@@ -74,7 +80,13 @@ function App() {
           <div className="movie-results">
             { movies.map(movie => (
               <div key={movie.id} className="movie-card">
-                <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} />
+                { movie.poster_path ? (
+                  <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} />
+                ) : (
+                  <img src="https://placehold.co/400x600"/>
+                )}
+                
+                
                 <h3>{movie.title}</h3>
                 <p>{movie.overview}</p>
               </div>
