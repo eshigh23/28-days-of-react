@@ -1,0 +1,60 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.app {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 5vh;
+}
+
+h3 {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.contactbook {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, 200px);
+  gap: 1rem;
+}
+
+.contact-card {
+  aspect-ratio: 1 / 1;
+  padding: .5rem;
+  border-radius: 8px;
+
+  border: 1px solid lightgrey;
+}
+
+.card-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-evenly;
+  /* gap: 0.5rem; */
+}
+
+.card-content--name {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.card-content input {
+  padding: 0.25em;
+}
+
+.card-buttons {
+  display: flex;
+  gap: .5em;
+}
+
+.card-button {
+  padding: 0.25em;
+}
