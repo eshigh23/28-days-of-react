@@ -3,21 +3,29 @@ import { useState } from "react";
 interface Contact {
   id: string;
   name: string;
-  city: string;
+  city?: string;
 }
 
 interface ContactCardProps {
     id: string;
-    city: string;
+    city?: string;
     name: string;
     setContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
+    activeId: string;
+    setActiveId: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function ContactCard({ id, city, name, setContacts }: ContactCardProps) {
+export default function ContactCard({ id, city, name, setContacts, activeId, setActiveId }: ContactCardProps) {
 
-    const [isFlipped, setIsFlipped] = useState(false)
-    const [newName, setNewName] = useState('')
-    const [newCity, setNewCity] = useState('')
+
+    const [newName, setNewName] = useState('name')
+    const [newCity, setNewCity] = useState('city')
+
+
+    const deleteContact = () => {
+        setContacts(prev => prev.filter(contact => contact.id !== id))
+    }
+
 
     const updateContact = (e:React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -37,19 +45,20 @@ export default function ContactCard({ id, city, name, setContacts }: ContactCard
             })
             return filtered
         })
-        setIsFlipped(false)
+        setActiveId('')
     }
+
 
     return (
         <div 
             key={id} 
             className="contact-card" 
         >
-            { !isFlipped ? (
+            { !(activeId === id) ? (
                 <div className="card-content">
                     <p className="card-content--name">{ name }</p>
                     <p>{ city }</p>
-                    <button className="card-button" onClick={() => setIsFlipped(prev => !prev)}>Edit</button>
+                    <button className="card-button" onClick={() => setActiveId(id)}>Edit</button>
                 </div>
 
             ) : (
@@ -58,6 +67,7 @@ export default function ContactCard({ id, city, name, setContacts }: ContactCard
                         name="mewname"
                         type="text"
                         placeholder="Type name"
+                        defaultValue={name}
                         onChange={(e) => setNewName(e.target.value)}
                     />
 
@@ -65,12 +75,14 @@ export default function ContactCard({ id, city, name, setContacts }: ContactCard
                         name="newcity"
                         type="text"
                         placeholder="Type city"
+                        defaultValue={city}
                         onChange={(e) => setNewCity(e.target.value)}
                     />
 
                     <div className="card-buttons">
                         <button className="card-button">Confirm</button>
-                        <button className="card-button" type="button" onClick={() => setIsFlipped(false)}>Cancel</button>
+                        <button className="card-button" type="button" onClick={() => setActiveId('')}>Cancel</button>
+                        <button className="card-button" type="button" onClick={deleteContact}>Delete</button>
                     </div>
 
                 </form>

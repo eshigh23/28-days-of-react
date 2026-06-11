@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 import ContactCard from './contactCard'
 
 interface Contact {
   id: string;
   name: string;
-  city: string;
+  city?: string;
 }
 
 const dummyData: Contact[] = 
@@ -25,19 +25,31 @@ const dummyData: Contact[] =
 function App() {
 
   const [contacts, setContacts] = useState<Contact[]>(dummyData)
+  const [activeId, setActiveId] = useState<string>('')
 
-  useEffect(() => {
-    console.log('contacts:', contacts)
-  }, [contacts])
+
+  const addNewContact = () => {
+    setContacts([...contacts, {
+      id: (Number(contacts[contacts.length - 1].id) + 1).toString(),
+      name: 'New Contact'
+    }])
+  }
+
 
   return (
     <div className="app">
-      <h3>Contact Book</h3>
-      <button 
-        className="app--add-new"
-        >
-          Add new
+      <div className="app-header">
+        <h3>Contact Book</h3>
+
+        <button
+          onClick={addNewContact} 
+          className="app--add-new"
+          >
+            Add new
         </button>
+
+      </div>
+
       <div className="contactbook">
         { contacts.map(contact => (
           <ContactCard
@@ -46,6 +58,8 @@ function App() {
             name={contact.name}
             city={contact.city}
             setContacts={setContacts}
+            activeId={activeId}
+            setActiveId={setActiveId}
           />
 
         ))}
